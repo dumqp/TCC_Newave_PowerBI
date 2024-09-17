@@ -35,7 +35,6 @@ class Sistema:
                     linha = file.readline()
                 linha = file.readline()
                 while linha [0:4] != " 999":
-                    #linha = file.readline()
                     try:
                         if (int(linha[0:4].strip()) < 900): # No subsistema
                             subsistemaDe = linha.split()[0]
