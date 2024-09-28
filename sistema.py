@@ -1,15 +1,14 @@
-import dger
+import pandas as pd
 
 class Sistema:
-    def __init__(self, caminho, n_anos, ano_inicio):
-        self.__n_anos = n_anos
-        self.__ano_inicio = ano_inicio
-        self.__caminho = caminho
+    def __init__(self, caminho):
+        self.__caminho = caminho + "/sistema.dat"
         self.__n_patamares_deficit = "0"
         self.__custo_deficit = {}
         self.__intercambio = {}
         self.__mercado = {}
         self.__geracaoPQ = {}
+        self.le_sistema()
 
     def le_sistema(self):
         with open(self.__caminho, "r") as file:
@@ -23,9 +22,10 @@ class Sistema:
             if linha.strip() == "CUSTO DO DEFICIT":
                 while linha[0:4] != " XXX":
                     linha = file.readline()
+                linha = file.readline()
                 while linha [0:4] != " 999":
-                    linha = file.readline()
                     self.__custo_deficit.update({linha[1:4].strip():linha[19:26].strip()}) # cod sistema : valor deficit pat1
+                    linha = file.readline()
             
             linha = file.readline()  # ir para linha após o 999            
 
@@ -104,6 +104,69 @@ class Sistema:
     @property
     def geracaoPQ(self):
         return self.__geracaoPQ
+    
+    @property
+    def n_patamares_deficit(self):
+        return self.__n_patamares_deficit
+    
+    @property
+    def custo_deficit(self):
+        return self.__custo_deficit
+    
+    def intercambios(self):
+        # Gera o DataFrame e retorna os subsistemas de e para únicos
+        df = self.lim_intercambio_dataframe
+        intercambios = df[['SubsistemaDE', 'SubsistemaPara']].drop_duplicates().reset_index(drop=True)
+        intercambios = intercambios[intercambios['SubsistemaDE'] < intercambios['SubsistemaPara']].reset_index(drop=True)
+        return intercambios
+    
+    @property
+    def lim_intercambio_dataframe(self):
+        #self.le_sistema()
+        # Converte o dicionário de intercâmbio para um DataFrame
+        df = pd.DataFrame.from_dict(self.__intercambio, orient='index', columns=['Valor'])
+        df.index = pd.MultiIndex.from_tuples(df.index, names=['SubsistemaDE', 'SubsistemaPara', 'Ano', 'Mes'])
+        df.reset_index(inplace=True)
+        df['SubsistemaDE']=pd.to_numeric(df['SubsistemaDE'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['SubsistemaPara']=pd.to_numeric(df['SubsistemaPara'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Ano']=pd.to_numeric(df['Ano'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Mes']=pd.to_numeric(df['Mes'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Valor']=pd.to_numeric(df['Valor'], errors='coerce')  # Converte para numérico
+        return df
+    
+    @property
+    def mercado_dataframe(self):
 
-sistema = Sistema("deck-2408/sistema.dat","5","2024")
-sistema.le_sistema()
+        # Converte o dicionário de intercâmbio para um DataFrame
+        df = pd.DataFrame.from_dict(self.__mercado, orient='index', columns=['Valor'])
+        df.index = pd.MultiIndex.from_tuples(df.index, names=['Subsistema', 'Ano', 'Mes'])
+        df.reset_index(inplace=True)
+        df['Subsistema']=pd.to_numeric(df['Subsistema'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Ano']=pd.to_numeric(df['Ano'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Mes']=pd.to_numeric(df['Mes'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Valor']=pd.to_numeric(df['Valor'], errors='coerce')  # Converte para numérico
+        return df
+
+    @property
+    def geracaoPQ_dataframe(self):
+        # Converte o dicionário de geracao de pequenas usinas para um DataFrame
+        df = pd.DataFrame.from_dict(self.__geracaoPQ, orient='index', columns=['Valor'])
+        df.index = pd.MultiIndex.from_tuples(df.index, names=['Subsistema', 'Tecnologia', 'Ano', 'Mes'])
+        df.reset_index(inplace=True)
+        df['Subsistema']=pd.to_numeric(df['Subsistema'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Tecnologia']=pd.to_numeric(df['Tecnologia'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Ano']=pd.to_numeric(df['Ano'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Mes']=pd.to_numeric(df['Mes'], downcast='unsigned', errors='coerce')  # Converte para numérico
+        df['Valor']=pd.to_numeric(df['Valor'], errors='coerce')  # Converte para numérico
+        return df
+
+#sistema = Sistema("PDE2031-ajustado")
+#df1 = sistema.lim_intercambio_dataframe
+#print(df1)
+#df2 = sistema.mercado_dataframe
+#print(df2)
+#df3 = sistema.geracaoPQ_dataframe
+#print(df3)
+
+#subsistemas_unicos = sistema.intercambios()
+#print(subsistemas_unicos)

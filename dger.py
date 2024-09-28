@@ -26,7 +26,7 @@ class Dger:
     #cria objeto com os dados do arquivo dger.dat
     def __init__ (self, caminho):
         self.__content= {}
-        self.__caminho = caminho
+        self.__caminho = caminho + "/dger.dat"
         self.leDger()
 
     def leDger(self):
