@@ -5,7 +5,7 @@ import pandas as pd
 class Ghtot:
     def __init__(self, caminho):
         self.__ree=ree.Ree(caminho)
-        self.__ree.le_ree()
+        #self.__ree.le_ree()
         self.__subsistemas = self.__ree.n_subsistemas
         self.__caminho = []
         for i in range(len(self.__subsistemas)):
@@ -65,7 +65,7 @@ class Ghtot:
         return self.__ghtotm
     
             
-ghtotm = Ghtot("PDE2031-ajustado")
-df=ghtotm.ghtotm_dataframe
-print(df)
-print(df.loc[2001*13])
+#ghtotm = Ghtot("PDE2031-ajustado")
+#df=ghtotm.ghtotm_dataframe
+#print(df)
+#print(df.loc[2001*13])

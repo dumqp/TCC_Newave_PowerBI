@@ -3,6 +3,8 @@ class Ree:
         self.__caminho = caminho + "/ree.dat"
         self.__ree = []
         self.__subsistema = []
+        self.__relacaoReeSubsistema = {}
+        self.le_ree()
 
     def le_ree(self):
         with open(self.__caminho, "r") as file:
@@ -11,8 +13,11 @@ class Ree:
             while True:
                 linha = file.readline()
                 if linha[0:4].strip() != "999":
-                    self.__ree.append(int(linha[0:4].strip()))
-                    self.__subsistema.append(int(linha[18:22].strip()))
+                    ree = int(linha[0:4].strip())
+                    subsistema = int(linha[18:22].strip())
+                    self.__ree.append(ree)
+                    self.__subsistema.append(subsistema)
+                    self.__relacaoReeSubsistema[ree] = subsistema
                 if linha[0:4].strip() == "999": break
             # Ordena a lista e retira repetidos
             self.__ree=sorted(list(set(self.__ree)))
@@ -28,7 +33,13 @@ class Ree:
     def n_subsistemas(self):
         return self.__subsistema
     
-#ree = Ree("deck-2408")
+    @property
+    def rel_ree_subsistema(self):
+        return self.__relacaoReeSubsistema
+    
+#ree = Ree("PDE2031-ajustado")
 #ree.le_ree()
 #print(ree.n_ree)
 #print(ree.n_subsistemas)
+#print(ree.rel_ree_subsistema[1])
+#print(ree.rel_ree_subsistema[9])
