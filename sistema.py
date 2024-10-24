@@ -159,7 +159,25 @@ class Sistema:
         df['Mes']=pd.to_numeric(df['Mes'], downcast='unsigned', errors='coerce')  # Converte para numérico
         df['Valor']=pd.to_numeric(df['Valor'], errors='coerce')  # Converte para numérico
         return df
-
+    
+    @property
+    def geracaoEolica_dataframe(self):
+        df = self.geracaoPQ_dataframe
+        df = df.loc[df['Tecnologia'] == 3]
+        return df
+    
+    @property
+    def geracaoSolar_dataframe(self):
+        df = self.geracaoPQ_dataframe
+        df = df.loc[df['Tecnologia'] == 4]
+        return df
+    
+    @property
+    def geracaoMMGD_dataframe(self):
+        df = self.geracaoPQ_dataframe
+        df = df.loc[(df['Tecnologia'] == 5) | (df['Tecnologia'] == 6) | (df['Tecnologia'] == 7) | (df['Tecnologia'] == 8)]
+        return df
+    
 #sistema = Sistema("PDE2031-ajustado")
 #df1 = sistema.lim_intercambio_dataframe
 #print(df1)
@@ -167,6 +185,13 @@ class Sistema:
 #print(df2)
 #df3 = sistema.geracaoPQ_dataframe
 #print(df3)
+#df4 = sistema.geracaoEolica_dataframe
+#df5 = sistema.geracaoSolar_dataframe
+#df6 = sistema.geracaoMMGD_dataframe
+
+#print(df4)
+#print(df5)
+#print(df6)
 
 #subsistemas_unicos = sistema.intercambios()
 #print(subsistemas_unicos)

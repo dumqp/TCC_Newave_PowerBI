@@ -20,8 +20,8 @@ class Ree:
                     self.__relacaoReeSubsistema[ree] = subsistema
                 if linha[0:4].strip() == "999": break
             # Ordena a lista e retira repetidos
-            self.__ree=sorted(list(set(self.__ree)))
-            self.__subsistema=sorted(list(set(self.__subsistema)))
+            self.__ree=sorted(list(set(int(val) for val in self.__ree)))
+            self.__subsistema=sorted(list(set(int(val) for val in self.__subsistema)))
             # transforma valores para string
             self.__ree = [str(val) for val in self.__ree]
             self.__subsistema = [str(val) for val in self.__subsistema]

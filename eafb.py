@@ -76,8 +76,8 @@ class Eafb:
         return df_enaPerc
     
             
-eafbm = Eafb("PDE2031-ajustado")
+#eafbm = Eafb("PDE2031-ajustado")
 #df=eafbm.eafbm_dataframe
 #print(df)
-df = eafbm.ena_perc_mlt
-print(df)
+#df = eafbm.ena_perc_mlt
+#print(df)

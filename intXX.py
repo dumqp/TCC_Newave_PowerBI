@@ -75,8 +75,8 @@ class Intxx:
         return self.__int
     
             
-intercambio = Intxx("PDE2031-ajustado")
-df=intercambio.int_dataframe
-print(df)
-print(df.loc[2001*13])
-print(df.loc[(df['SubsistemaDE'] == 1) & (df['SubsistemaPara'] == 11) & (df['Ano'] == 2023) & (df['Mes'] == 8) & (df['Serie'] == 100)])
+#intercambio = Intxx("PDE2031-ajustado")
+#df=intercambio.int_dataframe
+#print(df)
+#print(df.loc[2001*13])
+#print(df.loc[(df['SubsistemaDE'] == 1) & (df['SubsistemaPara'] == 11) & (df['Ano'] == 2023) & (df['Mes'] == 8) & (df['Serie'] == 100)])

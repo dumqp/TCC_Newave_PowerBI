@@ -178,24 +178,24 @@ class Gsf:
         return df_final
 
 
-    @property
-    def pch(self):
-        return self.__pch
+    #@property
+    #def pch(self):
+    #    return self.__pch
     
-    @property
-    def exph(self):
-        return self.__exph
+    #@property
+    #def exph(self):
+    #    return self.__exph
 
     
-gsf = Gsf("PDE2031-ajustado")
+#gsf = Gsf("PDE2031-ajustado")
 #df = gsf.importaDadosGarantiaFisicaUHE()
-df = gsf.gfDadosIniciaisUHE()
-df2 = gsf.juntaDadosGeracao()
-df3 = gsf.gfPch()
-df4 = gsf.juntaDadosGeracaoGF()
-df5= gsf.gfUhe_EX()
-df6 = gsf.calculaGSFMensal()
-df7 = gsf.calculaGSFAnual()
+#df = gsf.gfDadosIniciaisUHE()
+#df2 = gsf.juntaDadosGeracao()
+#df3 = gsf.gfPch()
+#df4 = gsf.juntaDadosGeracaoGF()
+#df5= gsf.gfUhe_EX()
+#df6 = gsf.calculaGSFMensal()
+#df7 = gsf.calculaGSFAnual()
 #print(df.loc[df['UsinaExistente'] == 'NE'])
 #print(df2.loc[df2['Serie']==2])
 #print(df3)
@@ -204,6 +204,6 @@ df7 = gsf.calculaGSFAnual()
 #print(gsf.exph)
 #print(gsf.relacionaExphGF())
 #print(gsf.pch)
-print(gsf.gfUhe_NE())
+#print(gsf.gfUhe_NE())
 #print(df5)
 

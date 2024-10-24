@@ -71,8 +71,8 @@ class Cmarg:
         df['PLD'] = df['CMO'].clip(lower=pld_minimo, upper=pld_maximo)  # Aplica os limites
         return df
             
-cmarg = Cmarg("PDE2031-ajustado")
-df=cmarg.pld_dataframe
-print(df)
-df2=cmarg.cmarg_dataframe
-print(df2.loc[2000*12*3+12*9+1])
+#cmarg = Cmarg("PDE2031-ajustado")
+#df=cmarg.pld_dataframe
+#print(df)
+#df2=cmarg.cmarg_dataframe
+#print(df2.loc[2000*12*3+12*9+1])
