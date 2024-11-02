@@ -36,10 +36,3 @@ class Ree:
     @property
     def rel_ree_subsistema(self):
         return self.__relacaoReeSubsistema
-    
-#ree = Ree("PDE2031-ajustado")
-#ree.le_ree()
-#print(ree.n_ree)
-#print(ree.n_subsistemas)
-#print(ree.rel_ree_subsistema[1])
-#print(ree.rel_ree_subsistema[9])

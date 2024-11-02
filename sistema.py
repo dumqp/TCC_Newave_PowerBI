@@ -122,7 +122,6 @@ class Sistema:
     
     @property
     def lim_intercambio_dataframe(self):
-        #self.le_sistema()
         # Converte o dicionário de intercâmbio para um DataFrame
         df = pd.DataFrame.from_dict(self.__intercambio, orient='index', columns=['Valor'])
         df.index = pd.MultiIndex.from_tuples(df.index, names=['SubsistemaDE', 'SubsistemaPara', 'Ano', 'Mes'])
@@ -178,20 +177,14 @@ class Sistema:
         df = df.loc[(df['Tecnologia'] == 5) | (df['Tecnologia'] == 6) | (df['Tecnologia'] == 7) | (df['Tecnologia'] == 8)]
         return df
     
-#sistema = Sistema("PDE2031-ajustado")
-#df1 = sistema.lim_intercambio_dataframe
-#print(df1)
-#df2 = sistema.mercado_dataframe
-#print(df2)
-#df3 = sistema.geracaoPQ_dataframe
-#print(df3)
-#df4 = sistema.geracaoEolica_dataframe
-#df5 = sistema.geracaoSolar_dataframe
-#df6 = sistema.geracaoMMGD_dataframe
+    @property
+    def geracaoPCH_dataframe(self):
+        df = self.geracaoPQ_dataframe
+        df = df.loc[df['Tecnologia'] == 1]
+        return df
 
-#print(df4)
-#print(df5)
-#print(df6)
-
-#subsistemas_unicos = sistema.intercambios()
-#print(subsistemas_unicos)
+    @property
+    def geracaoPCT_dataframe(self):
+        df = self.geracaoPQ_dataframe
+        df = df.loc[df['Tecnologia'] == 2]
+        return df

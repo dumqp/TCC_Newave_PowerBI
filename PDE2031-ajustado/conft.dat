@@ -1,0 +1,166 @@
+  NUM         NOME   SSIS     EX CLASSE
+ XXXX XXXXXXXXXXXX   XXXX     XX   XXXX
+    1      ANGRA 1      1     EX      1
+    4   ST.CRUZ 34      1     EE      4
+    9   R.SILVEIRA      1     EE      9
+   12  CUIABA G CC      1     EE     12
+   13      ANGRA 2      1     EX     13
+   15     LINHARES      1     EE     15
+   21   MARANHAO V      4     EE     21
+   24  J.LACERDA C      2     EE     24
+   25  J.LACERDA B      2     EE     25
+   26 J.LACERDA A1      2     EE     26
+   27 J.LACERDA A2      2     EE     27
+   28     FIGUEIRA      2     EE     28
+   35   URUGUAIANA      2     EE     35
+   36  MARANHAO IV      4     EE     36
+   42    FORTALEZA      3     EE     42
+   43   TERMOBAHIA      3     EE     43
+   44      ANGRA 3      1     NE     44
+   46  N.VENECIA 2      4     EE     46
+   47     TERMORIO      1     EE     47
+   48    ARAUCARIA      2     EE     48
+   49        VIANA      1     EE     49
+   50   PIRAT.12 G      1     EE     50
+   52  CAMPINA GDE      3     EE     52
+   53     GLOBAL I      3     EE     53
+   54 JUIZ DE FORA      1     EE     54
+   55    GLOBAL II      3     EE     55
+   57  MARACANAU I      3     EE     57
+   58   TERMOCEARA      3     EE     58
+   62   SEROPEDICA      1     EE     62
+   63      IBIRITE      1     EE     63
+   64       CANOAS      2     EE     64
+   67      TERMONE      3     EE     67
+   68  TRES LAGOAS      1     EE     68
+   69      TERMOPB      3     EE     69
+   70   GERAMAR II      4     EE     70
+   73    GERAMAR I      4     EE     73
+   83  VALE DO ACU      3     EE     83
+   86 ST.CRUZ NOVA      1     EE     86
+   90   TERMOMACAE      1     EE     90
+   96      TERMOPE      3     EE     96
+   97      CUBATAO      1     EE     97
+   98 PERNAMBU_III      3     EE     98
+  106 ERB CANDEIAS      3     EE    106
+  107    PAMPA SUL      2     EX    107
+  108     XAVANTES      1     EE    108
+  109        ALTOS      3     EE    109
+  110 N.PIRATINING      1     EE    110
+  111      ARACATI      3     EE    111
+  112      BAHIA I      3     EE    112
+  113     BATURITE      3     EE    113
+  116  PARNAIBA IV      4     EE    116
+  117  CAMPO MAIOR      3     EE    117
+  119      CAUCAIA      3     EE    119
+  121        CRATO      3     EE    121
+  125 ENGUIA PECEM      3     EE    125
+  127       IGUATU      3     EE    127
+  133   JUAZEIRO N      3     EE    133
+  135    MARAMBAIA      3     EE    135
+  137        GNA I      1     NE    137
+  138      NAZARIA      3     EE    138
+  140       MAUA 3      4     EE    140
+  144    PETROLINA      3     EE    144
+  146  STA VITORIA      1     EE    146
+  147 PROSPERIDADE      3     EE    147
+  149     SAO SEPE      2     EX    149
+  151     Potiguar      3     EE    151
+  152    TERMOCABO      3     EE    152
+  153         DAIA      1     EE    153
+  155   GOIANIA II      1     EE    155
+  156   CANDIOTA 3      2     EE    156
+  159  Termomanaus      3     EE    159
+  160  Pau Ferro I      3     EE    160
+  161 Potiguar III      3     EE    161
+  162     PECEM II      3     NE    162
+  163  P. PECEM II      3     EE    163
+  164       MURICY      3     EE    164
+  166  Camacari PI      3     EE    166
+  167   P. PECEM I      3     EE    167
+  169     Cisframa      2     EE    169
+  170     SUAPE II      3     EE    170
+  171   NORTEFLU-1      1     EE    171
+  172   NORTEFLU-2      1     EE    172
+  173   NORTEFLU-3      1     EE    173
+  174   NORTEFLU-4      1     EE    174
+  176 PORTO ITAQUI      4     EE    176
+  182 PALMEIRAS GO      1     EE    182
+  183 DO ATLANTICO      1     EE    183
+  194    T.NORTE 2      1     EE    194
+  201    APARECIDA      4     EE    201
+  203     C. ROCHA      4     EE    203
+  204      JARAQUI      4     EE    204
+  205     MANAUARA      4     EE    205
+  207  PONTA NEGRA      4     EE    207
+  209     TAMBAQUI      4     EE    209
+  211  BAIXADA FLU      1     EX    211
+  212 MARANHAO III      4     EE    212
+  221      SYKUE I      3     EE    221
+  223 PROSPERI III      3     NE    223
+  224 P. SERGIPE I      3     EE    224
+  228  O. CANOAS 1      4     NE    228
+  229 Onca Pintada      1     NE    229
+  230   Predilecta      1     NE    230
+  235 CAMACARI MII      3     NE    235
+  236  Marlim Azul      1     NE    236
+  237      CAMBARA      2     NE    237
+  238 GNA P. ACU 3      1     NE    238
+  239   PARNAIBA V      4     NE    239
+  334    W. ARJONA      1     EE    334
+  421  MARAN V L22      4     EE    421
+  422   MARAN V L7      4     EE    422
+  436 MARAN IV L22      4     EE    436
+  437  MARAN IV L7      4     EE    437
+  446  N.VEN 2 L22      4     EE    446
+  447   N.VEN 2 L7      4     EE    447
+  240 NT BARCARENA      4     NE    240
+  241 PROSPERID II      3     NE    241
+  460  B. BONITA I      2     NE    460
+  462    LOR. MELO      1     NE    462
+  463      VIANA 1      1     NE    463
+  464     PAULINIA      1     NE    464
+  465      EDLUX X      1     NE    465
+  466  POVOCACAO 1      1     NE    466
+  467    RE TG 100      2     NE    467
+  468    Karkey 13      1     NE    468
+  469    Karkey 19      1     NE    469
+  470     PORSUD I      1     NE    470
+  471    PORSUD II      1     NE    471
+  472       EPP II      1     NE    472
+  473       EPP IV      1     NE    473
+  474         RJ I      1     NE    474
+  500 Nuclear           1     NE    500
+  511 GNCS SE FLEX      1     NE    511
+  512 GNCS SE FLEX      1     NE    512
+  513 GNNAC SE 70       1     NE    513
+  517 GNL S FLEX        2     NE    517
+  521 GNCS S FLEX       2     NE    521
+  531 GNCS NE FLEX      3     NE    531
+  533 GNNAC NE 70       3     NE    533
+  541 GNCS N FLEX       4     NE    541
+  543 GNNAC N 70        4     NE    543
+  547 CAVACO            1     NE    547
+  548 CARVAO NAC        2     NE    548
+  550 RD A N            4     NE    550
+  551 RD A SE           1     NE    551
+  552 RD A NE           3     NE    552
+  553 RD B N            4     NE    553
+  554 RD B NE           3     NE    554
+  555 RD B SE           1     NE    555
+  556 RD B S            2     NE    556
+  557 RD C N            4     NE    557
+  558 RD C NE           3     NE    558
+  559 RD C SE           1     NE    559
+  561 CAP MAN           4     NE    561
+  564 RETROFIT1         1     NE    564
+  565 RETROFIT2         1     NE    565
+  568 RETROFIT3         2     NE    568
+  569 RETROFIT4         1     NE    569
+  570 CAP AC RO         1     NE    570
+  571 RETROFIT5         3     NE    571
+  572 CAP MAN           4     NE    572
+  573 RETROFIT6         3     NE    573
+  575 RETROFIT7         1     NE    575
+  576 RETROFIT8         4     NE    576
+  660 RD C S            2     NE    660

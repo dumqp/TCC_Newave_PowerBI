@@ -9,13 +9,7 @@ import sistema
 class Gsf:
     def __init__(self, caminho):
         self.__caminho= caminho + "/GarantiasFisicas/GarantiasFisicas.xlsx"
-        self.__ree=ree.Ree(caminho)
-        #self.__ree.le_ree()
-        self.__subsistemas = self.__ree.n_subsistemas
-        self.__rel_ree_subsitema = self.__ree.rel_ree_subsistema
         self.__dger=dger.Dger(caminho)
-        #self.__dger.leDger()
-        self.__nseries = int(self.__dger.n_series_sinteticas)
         self.__ghtot = ghtot.Ghtot(caminho)
         self.__ghtot= self.__ghtot.ghtotm_dataframe
         self.__pch = sistema.Sistema(caminho)
@@ -64,9 +58,7 @@ class Gsf:
 
     def gfPch(self):
         df = self.__pch.groupby(['Subsistema', 'Ano'])['Valor'].mean().reset_index()
-        #print(df.loc[df['Ano']==2022])
         df = df.groupby('Ano')['Valor'].sum().reset_index()
-        #print(df.loc[df['Ano']==2022])
         df.rename(columns={'Valor': 'GF_PCH'}, inplace=True)
         return df
        
@@ -77,11 +69,8 @@ class Gsf:
         # ordenar o dataframe por CodUsina e DataEntradaAno, 'DataEntradaMes para garantir que a soma seja feita corretamente
         df = df.sort_values(by=['CodUsina', 'AnoInicioGF', 'MesInicioGF'])
         df['GFAcumulada'] = df.groupby(['AnoInicioGF','MesInicioGF'])['GF'].cumsum()
-        #print(df)
-        #print(df.columns)
         df_filtrado = df[(df['AnoInicioGF'] == self.__dger.ano_inicio_estudo) & (df['MesInicioGF'] == self.__dger.mes_inicio_estudo)]
         GF_UHE_Ex = df_filtrado['GFAcumulada'].max()
-        #df_resultado = self.somaAcumuladaUHE_NE(df)
         return GF_UHE_Ex
 
     #Garantia Fisica de UHEs da Expansão
@@ -91,7 +80,6 @@ class Gsf:
         df['GFIncremental'] = df['Potencia'] * 0.9
         # ordenar o dataframe por CodUsina e DataEntradaAno, 'DataEntradaMes para garantir que a soma seja feita corretamente
         df = df.sort_values(by=['CodUsina', 'DataEntradaAno', 'DataEntradaMes'])
-        #print(df[['CodUsina','DataEntradaAno','DataEntradaMes','GFIncremental', 'Garantia Fisica (MWmed)']])
         #Soma a garantia fisica de forma acumulada por código de usina
         df_resultado = self.somaAcumuladaUHE_NE(df)
         df = df_resultado #df completo apenas para verificacao
@@ -137,26 +125,20 @@ class Gsf:
         df_gf_pch = self.gfPch()
         gf_uhe_ex = self.gfUhe_EX()
         df_uhe_ne = self.gfUhe_NE()
-        #print(df_uhe_ne)
         df = df_geracao
         df['GF_UHE_EX'] = gf_uhe_ex
-        #print(df_uhe_ne.columns)
-        #print(df.columns)
         df = pd.merge(df, df_uhe_ne, on=['Ano','Mes'], how='left')
         # Substituir NaN com o valor do mês anterior (acumulação)
         df['GF_UHE_NE'] = df['GF_UHE_NE'].fillna(method='ffill')
         # Se ainda restarem NaNs no início (por não haver dados acumulados anteriores), preencher com zero
         df['GF_UHE_NE'] = df['GF_UHE_NE'].fillna(0)
-        print(df_gf_pch)
         df = pd.merge(df, df_gf_pch, on=['Ano'], how='left')
         df['GF_Total'] = df['GF_UHE_EX'] + df['GF_UHE_NE'] + df['GF_PCH']
-
         return df
     
     def calculaGSFMensal(self):
         df = self.juntaDadosGeracaoGF()
         df ['GSF_Mensal'] = df['GeracaoTotal'] / df ['GF_Total']
-        #print(df.loc[df['Ano'] == 2024])
         #soma GF de UHE e PCH
         #divide a geração total pela GF total
         #faz o cálculo com as colunas
@@ -166,44 +148,9 @@ class Gsf:
         df = self.juntaDadosGeracaoGF()
         df_anual = df.groupby(['Ano','Serie'])['GeracaoTotal'].mean().reset_index()
         df_gf_anual = df.groupby(['Ano','Serie'])['GF_Total'].mean().reset_index()
-        #print(df_anual)
         df_final = pd.merge(df_gf_anual, df_anual, on=['Ano','Serie'], how='left')
-        #df ['GSF_Mensal'] = df['GeracaoTotal'] / df ['GF_Total']
         df_final ['GSF_Anual'] = df_final['GeracaoTotal'] / df_final ['GF_Total']
-        print(df_final.loc[df_final['Ano'] == 2022])
-        print(df_final.loc[df_final['Ano'] == 2030])
         #soma GF de UHE e PCH
         #divide a geração total pela GF total
         #faz o cálculo com as colunas
         return df_final
-
-
-    #@property
-    #def pch(self):
-    #    return self.__pch
-    
-    #@property
-    #def exph(self):
-    #    return self.__exph
-
-    
-#gsf = Gsf("PDE2031-ajustado")
-#df = gsf.importaDadosGarantiaFisicaUHE()
-#df = gsf.gfDadosIniciaisUHE()
-#df2 = gsf.juntaDadosGeracao()
-#df3 = gsf.gfPch()
-#df4 = gsf.juntaDadosGeracaoGF()
-#df5= gsf.gfUhe_EX()
-#df6 = gsf.calculaGSFMensal()
-#df7 = gsf.calculaGSFAnual()
-#print(df.loc[df['UsinaExistente'] == 'NE'])
-#print(df2.loc[df2['Serie']==2])
-#print(df3)
-#print(df4.loc[df4['Serie']==2])
-#print(df)
-#print(gsf.exph)
-#print(gsf.relacionaExphGF())
-#print(gsf.pch)
-#print(gsf.gfUhe_NE())
-#print(df5)
-

@@ -5,14 +5,12 @@ import pandas as pd
 class Cmarg:
     def __init__(self, caminho):
         self.__ree=ree.Ree(caminho)
-        self.__ree.le_ree()
         self.__subsistemas = self.__ree.n_subsistemas
         self.__caminho = []
         for i in range(len(self.__subsistemas)):
             self.__caminho.append(caminho + "/saidas/cmarg00"+str(i+1)+"-med.out")
         self.__cmarg = {}
         self.__dger=dger.Dger(caminho)
-        self.__dger.leDger()
         self.__nseries = int(self.__dger.n_series_sinteticas)
         self.le_cmarg()
     
@@ -21,7 +19,6 @@ class Cmarg:
             with open(arquivo, "r") as file:
                 nsubsistema = self.__caminho.index(arquivo)
                 nsubsistema=self.__subsistemas[nsubsistema]
-                #print(self.__subsistemas[nsubsistema])
                 for i in range (3):  #Pula linhas de cabeçalho
                     linha = file.readline()
                 linha = file.readline()  #linha dos anos
@@ -70,9 +67,3 @@ class Cmarg:
         # Aplica os limites e converte de volta para string
         df['PLD'] = df['CMO'].clip(lower=pld_minimo, upper=pld_maximo)  # Aplica os limites
         return df
-            
-#cmarg = Cmarg("PDE2031-ajustado")
-#df=cmarg.pld_dataframe
-#print(df)
-#df2=cmarg.cmarg_dataframe
-#print(df2.loc[2000*12*3+12*9+1])

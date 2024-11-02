@@ -51,5 +51,3 @@ class Exph:
     def exph(self):
         return self.__exph
     
-#exph = Exph("PDE2031-ajustado")
-#print(exph.exph_dataframe)

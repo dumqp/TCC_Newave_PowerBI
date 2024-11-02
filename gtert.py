@@ -5,14 +5,12 @@ import pandas as pd
 class Gtert:
     def __init__(self, caminho):
         self.__ree=ree.Ree(caminho)
-        self.__ree.le_ree()
         self.__subsistemas = self.__ree.n_subsistemas
         self.__caminho = []
         for i in range(len(self.__subsistemas)):
             self.__caminho.append(caminho + "/saidas/gtert00"+str(i+1)+".out")
         self.__gtert = {}
         self.__dger=dger.Dger(caminho)
-        self.__dger.leDger()
         self.__nseries = int(self.__dger.n_series_sinteticas)
         with open(caminho + "/patamar.dat", "r") as file:
             for _ in range(2):  # Pula as duas primeiras linhas
@@ -36,7 +34,6 @@ class Gtert:
                     linha = file.readline()  # linha dos meses
                     linha = file.readline()
                     while linha[2:7]!="TOTAL":
-                        #print(linha)
                         if linha[2:5] !="": classeTermica = linha[2:5].strip()
                         #lê os valores por serie
                         for i in range(self.__nseries):
@@ -60,13 +57,11 @@ class Gtert:
                             valor = []
                             for k in range(self.__nPatamares):  #valores por patamar
                                 valor.append([])
-                            #print(str(serie) + " - " + str(classeTermica))
                         for i in range(5):
                             linha = file.readline() #lê e pula as linhas de MEDIA, DSVPADRAO, ETC. DA CLASSE TERMICA
                         linha = file.readline()
                     for i in range(self.__nseries-1): #O primeiro TOTAL é lido no loop anterior
                         linha = file.readline() #lê e pula as linhas de TOTAL do ANO
-                    #print(linha + "TOTAL")
                     for i in range(6):
                         linha = file.readline() #lê e pula as linhas de MEDIA, DSVPADRAO, ETC. DO ANO
                     linha = file.readline()  #linha em branco antes dos anos
@@ -90,12 +85,3 @@ class Gtert:
     @property
     def gtert(self):
         return self.__gtert
-    
-            
-#gtert = Gtert("PDE2031-ajustado")
-#df=gtert.gtert_dataframe
-#print(df)
-#print(df.loc[(df['Subsistema'] == 1) & (df['Ano'] == 2023) & (df['Mes'] == 8) & (df['Serie'] == 100)])
-#print(df.loc[(df['Subsistema'] == 2) & (df['Ano'] == 2023) & (df['Mes'] == 8) & (df['Serie'] == 100)])
-#print(df.loc[(df['Subsistema'] == 3) & (df['Ano'] == 2023) & (df['Mes'] == 8) & (df['Serie'] == 100)])
-#print(df.loc[(df['Subsistema'] == 4) & (df['Ano'] == 2023) & (df['Mes'] == 8) & (df['Serie'] == 100)])

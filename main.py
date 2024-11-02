@@ -5,6 +5,7 @@ import sistema
 import eafb
 import intXX
 import exportaDados as ed
+import gsf
 
 caminho_caso = "PDE2031-ajustado"
 
@@ -30,6 +31,8 @@ sistema_obj = sistema.Sistema(caminho_caso)
 df_eolica = sistema_obj.geracaoEolica_dataframe
 df_solar = sistema_obj.geracaoSolar_dataframe
 df_mmgd = sistema_obj.geracaoMMGD_dataframe
+df_pch = sistema_obj.geracaoPCH_dataframe
+df_pct = sistema_obj.geracaoPCT_dataframe
 
 #Dados de demanda de energia (carga)
 df_mercado = sistema_obj.mercado_dataframe
@@ -44,8 +47,14 @@ print("Lendo INTERCAMBIO")
 intercambio_obj = intXX.Intxx(caminho_caso)
 df_intercambio = intercambio_obj.int_dataframe
 
+#Dados de GSF
+print("Lendo GSF")
+gsf_obj = gsf.Gsf(caminho_caso)
+gsf_mensal = gsf_obj.calculaGSFMensal()
+gsf_anual = gsf_obj.calculaGSFAnual()
+
 #Exportar os dados para CSV
-print("Lendo EXPORTANTO CSV")
+print("Exportanto CSV")
 ed.exportaDados.exportaCsv(df_cmo,'cmo')
 ed.exportaDados.exportaCsv(df_pld,'pld')
 ed.exportaDados.exportaCsv(df_ghtot,'ghtot')
@@ -53,9 +62,13 @@ ed.exportaDados.exportaCsv(df_gtert,'gtert')
 ed.exportaDados.exportaCsv(df_eolica,'eolica')
 ed.exportaDados.exportaCsv(df_solar,'solar')
 ed.exportaDados.exportaCsv(df_mmgd,'mmgd')
+ed.exportaDados.exportaCsv(df_pch,'pch')
+ed.exportaDados.exportaCsv(df_pct,'pct')
 ed.exportaDados.exportaCsv(df_ena_percentual,'ena_percentual')
 ed.exportaDados.exportaCsv(df_intercambio,'intercambio')
 ed.exportaDados.exportaCsv(df_mercado,'mercado')
+ed.exportaDados.exportaCsv(gsf_mensal,'gsf_mensal')
+ed.exportaDados.exportaCsv(gsf_anual,'gsf_anual')
 
 
 

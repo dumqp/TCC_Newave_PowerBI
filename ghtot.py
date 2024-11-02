@@ -5,14 +5,12 @@ import pandas as pd
 class Ghtot:
     def __init__(self, caminho):
         self.__ree=ree.Ree(caminho)
-        #self.__ree.le_ree()
         self.__subsistemas = self.__ree.n_subsistemas
         self.__caminho = []
         for i in range(len(self.__subsistemas)):
             self.__caminho.append(caminho + "/saidas/ghtotm00"+str(i+1)+".out")
         self.__ghtotm = {}
         self.__dger=dger.Dger(caminho)
-        self.__dger.leDger()
         self.__nseries = int(self.__dger.n_series_sinteticas)
         with open(caminho + "/patamar.dat", "r") as file:
             for _ in range(2):  # Pula as duas primeiras linhas
@@ -63,9 +61,3 @@ class Ghtot:
     @property
     def ghtotm(self):
         return self.__ghtotm
-    
-            
-#ghtotm = Ghtot("PDE2031-ajustado")
-#df=ghtotm.ghtotm_dataframe
-#print(df)
-#print(df.loc[2001*13])

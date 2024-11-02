@@ -45,9 +45,6 @@ class Confhd:
         df['FimHistorico']=pd.to_numeric(df['FimHistorico'], downcast='unsigned', errors='coerce')  # Converte para numérico
         return df
     
-#confhd = Confhd("PDE2031-ajustado")
-#df = confhd.confhd_dataframe
-#print(df[df["UsinaExistente"] == "NE"])
 
 
 

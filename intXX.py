@@ -20,7 +20,6 @@ class Intxx:
                 self.__caminho.append(caminho + "/saidas/int0"+str(subsistemaDe)+"0"+str(subsistemaPara)+".out")
         self.__int = {}
         self.__dger=dger.Dger(caminho)
-        self.__dger.leDger()
         self.__nseries = int(self.__dger.n_series_sinteticas)
         with open(caminho + "/patamar.dat", "r") as file:
             for _ in range(2):  # Pula as duas primeiras linhas
@@ -74,9 +73,3 @@ class Intxx:
     def int(self):
         return self.__int
     
-            
-#intercambio = Intxx("PDE2031-ajustado")
-#df=intercambio.int_dataframe
-#print(df)
-#print(df.loc[2001*13])
-#print(df.loc[(df['SubsistemaDE'] == 1) & (df['SubsistemaPara'] == 11) & (df['Ano'] == 2023) & (df['Mes'] == 8) & (df['Serie'] == 100)])

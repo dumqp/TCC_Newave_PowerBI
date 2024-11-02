@@ -5,7 +5,6 @@ import pandas as pd
 class Eafb:
     def __init__(self, caminho):
         self.__ree=ree.Ree(caminho)
-        self.__ree.le_ree()
         self.__subsistemas = self.__ree.n_subsistemas
         self.__pasta = caminho #pasta principal
         self.__caminho = []
@@ -13,7 +12,6 @@ class Eafb:
             self.__caminho.append(caminho + "/saidas/eafbm00"+str(i+1)+".out")
         self.__eafbm = {}
         self.__dger=dger.Dger(caminho)
-        self.__dger.leDger()
         self.__nseries = int(self.__dger.n_series_sinteticas)
         self.le_eafbm()
     
@@ -75,9 +73,3 @@ class Eafb:
         df_enaPerc["%MLT"]=df_enaPerc['ENA-MWm']/df_enaPerc['MLT']
         return df_enaPerc
     
-            
-#eafbm = Eafb("PDE2031-ajustado")
-#df=eafbm.eafbm_dataframe
-#print(df)
-#df = eafbm.ena_perc_mlt
-#print(df)
