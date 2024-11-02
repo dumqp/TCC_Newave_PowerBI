@@ -18,7 +18,7 @@ class Intxx:
                 self.__caminho.append(caminho + "/saidas/int0"+str(subsistemaDe)+"00"+str(subsistemaPara)+".out")
             else:
                 self.__caminho.append(caminho + "/saidas/int0"+str(subsistemaDe)+"0"+str(subsistemaPara)+".out")
-        self.__int = {}
+        self.__intx = {}
         self.__dger=dger.Dger(caminho)
         self.__nseries = int(self.__dger.n_series_sinteticas)
         with open(caminho + "/patamar.dat", "r") as file:
@@ -49,7 +49,7 @@ class Intxx:
                             mes = j+1
                             valor = linha[12 + (9 * j):21 + (9 * j)].strip()
                             chave = (subsistemaDE, subsistemaPara, ano, mes, serie)
-                            self.__int[chave] = valor
+                            self.__intx[chave] = valor
                     for i in range(7):
                         linha = file.readline() #lê e pula as linhas de MEDIA, DSVPADRAO, ETC.
                     linha = file.readline()  #linha dos anos
@@ -58,7 +58,7 @@ class Intxx:
     @property
     def int_dataframe(self): #dataframe apenas com cmo
         # Converte o dicionário de cmarg para um DataFrame
-        df = pd.DataFrame.from_dict(self.__int, orient='index', columns=['MWm'])
+        df = pd.DataFrame.from_dict(self.__intx, orient='index', columns=['MWm'])
         df.index = pd.MultiIndex.from_tuples(df.index, names=['SubsistemaDE', 'SubsistemaPara', 'Ano', 'Mes', 'Serie'])
         df.reset_index(inplace=True)
         df['SubsistemaDE']=pd.to_numeric(df['SubsistemaDE'], downcast='unsigned', errors='coerce')  # Converte para numérico
@@ -70,6 +70,6 @@ class Intxx:
         return df
 
     @property
-    def int(self):
-        return self.__int
+    def intx(self):
+        return self.__intx
     
